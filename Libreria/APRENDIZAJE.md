@@ -200,3 +200,22 @@ Se incorporaron las ilustraciones, las 8 tapas, el logo y los favicons del mater
 1. Abrí `index.html`: se ven las 8 tapas con su etiqueta, el logo y el favicon en la pestaña.
 2. Revisá que no haya errores 404 en la consola (`F12`).
 3. Antes de desplegar, mové o borrá `img/materiales-la-hoja-suelta/`.
+
+## Ajuste posterior — URLs de Netlify y vista previa en redes
+
+### Qué se hizo
+- `canonical`, `og:url`, `og:image` y los datos estructurados ahora usan el dominio real: `https://librerialahojasuelta.netlify.app`. Antes se había supuesto un dominio que no existe.
+- `og:image` pasó a `img/og-imagen.jpg` (1200×630) y se agregaron `og:image:type`, `og:image:width` y `og:image:height` (el `alt` ya estaba).
+- El espacio entre "Ver novedades" y la flecha: el HTML ya tenía un espacio, pero el botón es `inline-flex` y en un contenedor flex el espacio entre elementos se descarta. Se resolvió con `gap` en `.btn`.
+
+### Por qué la vista previa necesita URLs absolutas
+Quien genera la vista previa (WhatsApp, Instagram, Facebook, X) no abre tu página como un navegador: un servidor suyo descarga el HTML, lee las etiquetas `og:` y después, en otra petición, descarga la imagen. Una ruta relativa como `img/og-imagen.jpg` solo tiene sentido dentro de tu sitio, relativa a la dirección de la página que la contiene; ese servidor no tiene ese contexto, y menos aún cuando el mismo dato se guarda en una caché y se muestra en otro lugar. La URL absoluta (`https://...`) dice con exactitud dónde buscar la imagen. Además:
+- Tiene que ser pública y accesible por https, sin login.
+- JPG o PNG es lo más compatible; WebP no lo aceptan todas las plataformas.
+- Declarar ancho y alto deja a la red armar la tarjeta sin esperar a descargar la imagen.
+- Las redes guardan en caché la vista previa: si cambiás la imagen, hay que pedirle a la plataforma que la actualice (por ejemplo con el depurador de enlaces de Facebook).
+
+### Cómo verificar
+1. Abrí https://www.opengraph.xyz con la dirección publicada y mirá título, descripción e imagen.
+2. Abrí en el navegador `https://librerialahojasuelta.netlify.app/img/og-imagen.jpg`: tiene que verse la imagen.
+3. Compará el botón "Ver novedades →": ahora hay espacio entre el texto y la flecha.

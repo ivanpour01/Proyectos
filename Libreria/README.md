@@ -63,7 +63,7 @@ Las imágenes actuales son ilustraciones provisorias. Para usar fotos reales, gu
 |---|---|---|
 | `img/local-fachada.webp` | 1200×800 | Inicio (el badge verde tapa la esquina superior derecha) |
 | `img/equipo-hermanas.webp` | 1200×800 | Nosotros |
-| `img/og-imagen.webp` | 1200×630 | Vista previa al compartir en redes (motivo centrado) |
+| `img/og-imagen.jpg` | 1200×630 | Vista previa al compartir en redes (JPG, motivo centrado) |
 | `img/tapas/*.webp` | 800×1200 | Tapas de los libros |
 | `img/logo.svg`, `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` | — | Logo y favicons |
 
@@ -78,7 +78,7 @@ Las imágenes actuales son ilustraciones provisorias. Para usar fotos reales, gu
 2. **Add new site → Deploy manually** y arrastrá **la carpeta del proyecto** (la que contiene `index.html`).
    - Alternativa: subí el proyecto a GitHub y conectalo desde **Import from Git**. No hace falta comando de build ni carpeta de publicación (dejá todo vacío o en `.`).
 3. Esperá un minuto. Netlify te da una dirección del tipo `algo.netlify.app`.
-4. Para usar un dominio propio: **Domain management → Add a domain**. Después actualizá `https://lahojasuelta.com.ar/` en `index.html` (`canonical`, `og:url`, `og:image` y JSON-LD) si el dominio es otro.
+4. Para usar un dominio propio: **Domain management → Add a domain**. Después reemplazá `https://librerialahojasuelta.netlify.app` en `index.html` (`canonical`, `og:url`, `og:image` y JSON-LD) si el dominio es otro.
 
 ## Cómo probar los formularios
 

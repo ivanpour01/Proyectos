@@ -151,6 +151,7 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--espacio-2);             /* separa el texto de la flecha */
   min-height: 2.75rem;               /* 44 px: cómodo para el pulgar */
   padding: var(--espacio-2) var(--espacio-5);
   border: 2px solid transparent;
