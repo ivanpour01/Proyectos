@@ -1,0 +1,1132 @@
+/* ==========================================================================
+   La Hoja Suelta · estilos (fase 3: mobile first, base desde 360 px)
+   Metodología: BEM (bloque__elemento--modificador).
+   Los ajustes para 768 px y 1200 px se agregan en la fase 4.
+   ========================================================================== */
+
+/* ---------- 0. Fuentes de respaldo ----------
+   Mientras cargan Lora e Inter se usa Georgia/Arial achicadas o agrandadas al
+   mismo ancho (size-adjust medido), así el texto no se corre cuando llega la
+   fuente real y se evita el salto de layout (CLS). */
+@font-face {
+  font-family: "Lora Fallback";
+  src: local("Georgia");
+  size-adjust: 106%;
+}
+
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial");
+  size-adjust: 106.6%;
+}
+
+/* ---------- 1. Variables ---------- */
+:root {
+  /* Colores muestreados de las referencias. Nada de blanco ni negro puros. */
+  --color-crema: #F5EEDF;
+  --color-papel: #EDE3CF;
+  --color-tarjeta: #FBF6EA;
+  --color-tinta: #221D18;
+  --color-tinta-suave: #5A5047;   /* texto secundario: 6,8:1 sobre crema */
+  --color-linea: #D8CAAF;
+  /* Terracota un poco más oscuro que el de la referencia (#B4532F, 4,3:1)
+     para llegar a 5:1 de contraste (AA) con texto crema encima. */
+  --color-terracota: #A64A28;
+  --color-terracota-claro: #E08A62; /* acento sobre fondos oscuros (6,2:1 sobre el casi negro) */
+  --color-terracota-pastel: #F0A47E; /* acento sobre el verde: 4,8:1 (el claro daba 3,7:1) */
+  --color-verde: #2F4A3A;
+  --color-verde-claro: #E5EFE4;
+  --color-oscuro-2: #2E2822;      /* tarjetas sobre el fondo oscuro */
+  --color-whatsapp: #1B6F3F;
+
+  /* Fondo de las imágenes mientras cargan */
+  --tapa-beige: #DCCFB8;
+
+  /* Tipografías */
+  --fuente-titulo: "Lora", "Lora Fallback", Georgia, "Times New Roman", serif;
+  --fuente-texto: "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Escala de espaciado */
+  --espacio-1: 0.25rem;
+  --espacio-2: 0.5rem;
+  --espacio-3: 0.75rem;
+  --espacio-4: 1rem;
+  --espacio-5: 1.5rem;
+  --espacio-6: 2rem;
+  --espacio-7: 3rem;
+  --espacio-8: 4rem;
+
+  --radio: 0.75rem;
+  --radio-chico: 0.5rem;
+  --foco: var(--color-terracota);
+
+  /* Margen lateral: 1rem en celular. En pantallas anchas centra el contenido
+     en una columna de 40rem hasta que la fase 4 la amplíe. */
+  --ancho-max: 40rem;
+  --margen-lateral: max(var(--espacio-4), calc((100% - var(--ancho-max)) / 2));
+}
+
+/* ---------- 2. Reset y base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;          /* scroll suave solo con CSS */
+  scroll-padding-top: 5rem;         /* que el header fijo no tape el título al saltar */
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-crema);
+  color: var(--color-tinta);
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+h1, h2, h3, p, ul, ol, figure, blockquote, address, table {
+  margin: 0;
+}
+
+ul, ol {
+  padding: 0;
+  list-style: none;
+}
+
+img, iframe {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+/* Foco visible para quien navega con teclado */
+:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 3px;
+}
+
+/* ---------- 3. Utilidades ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.salto {
+  position: absolute;
+  left: var(--espacio-4);
+  top: -4rem;
+  z-index: 100;
+  padding: var(--espacio-3) var(--espacio-4);
+  background: var(--color-tinta);
+  color: var(--color-crema);
+  border-radius: var(--radio-chico);
+}
+
+.salto:focus {
+  top: var(--espacio-2);
+}
+
+/* ---------- 4. Botones ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;               /* 44 px: cómodo para el pulgar */
+  padding: var(--espacio-2) var(--espacio-5);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font: 600 0.9375rem/1.2 var(--fuente-texto);
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn--primario {
+  background: var(--color-terracota);
+  color: var(--color-crema);
+}
+
+.btn--secundario {
+  border-color: var(--color-tinta);
+  color: var(--color-tinta);
+  background: transparent;
+}
+
+.btn--verde {
+  background: var(--color-verde);
+  color: var(--color-crema);
+  border-radius: var(--radio-chico);
+  font-size: 0.8125rem;
+  padding-inline: var(--espacio-2);
+}
+
+.btn--claro {
+  background: var(--color-crema);
+  color: var(--color-terracota);
+}
+
+.btn--ancho {
+  width: 100%;
+  border-radius: var(--radio-chico);
+}
+
+.btn:hover {
+  filter: brightness(1.08);
+}
+
+/* ---------- 5. Header y navegación ---------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-2) var(--espacio-4);
+  padding: var(--espacio-3) var(--margen-lateral) 0;
+  background: var(--color-crema);
+  border-bottom: 1px solid var(--color-linea);
+}
+
+.header__marca {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--espacio-3);
+  align-items: center;
+  text-decoration: none;
+}
+
+.header__logo {
+  grid-row: span 2;
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.header__nombre {
+  font-family: var(--fuente-titulo);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.header__sub {
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-tinta-suave);
+}
+
+/* Sin JS la navegación se ve completa y se desliza hacia el costado.
+   Con JS (clase .js en <html>) se convierte en un menú desplegable. */
+.header__menu-btn {
+  display: none;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 var(--espacio-4);
+  background: transparent;
+  border: 1.5px solid var(--color-tinta);
+  border-radius: var(--radio-chico);
+  color: var(--color-tinta);
+  font: 600 0.875rem/1 var(--fuente-texto);
+  cursor: pointer;
+}
+
+.js .header__menu-btn {
+  display: inline-flex;
+}
+
+.js .header {
+  padding-bottom: var(--espacio-3);
+}
+
+.js .nav {
+  display: none;
+}
+
+.js .nav--abierto {
+  display: block;
+}
+
+.js .nav__lista {
+  flex-direction: column;
+  gap: 0;
+}
+
+.js .nav__enlace {
+  padding: var(--espacio-3) 0;
+  border-bottom: 1px solid var(--color-linea);
+}
+
+.header__cta {
+  display: none;                     /* en mobile alcanza con el botón flotante */
+}
+
+.nav {
+  flex-basis: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav__lista {
+  display: flex;
+  gap: var(--espacio-5);
+  white-space: nowrap;
+}
+
+.nav__enlace {
+  display: block;
+  padding: var(--espacio-2) 0 var(--espacio-3);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.nav__enlace:hover {
+  border-bottom-color: var(--color-terracota);
+}
+
+/* ---------- 6. Secciones (estructura común) ---------- */
+.seccion {
+  padding: var(--espacio-7) var(--margen-lateral);
+}
+
+.seccion--papel {
+  background: var(--color-papel);
+}
+
+.seccion--oscura {
+  --foco: var(--color-terracota-claro);
+  background: var(--color-tinta);
+  color: var(--color-crema);
+}
+
+.seccion--verde {
+  --foco: var(--color-terracota-claro);
+  background: var(--color-verde);
+  color: var(--color-crema);
+}
+
+.eyebrow {
+  margin-bottom: var(--espacio-3);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-terracota);
+}
+
+.seccion--oscura .eyebrow {
+  color: var(--color-terracota-claro);
+}
+
+.seccion--verde .eyebrow {
+  color: var(--color-terracota-pastel);
+}
+
+.seccion__titulo {
+  font-family: var(--fuente-titulo);
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.seccion__titulo em,
+.hero__titulo em {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--color-terracota);
+}
+
+.seccion__bajada {
+  margin-top: var(--espacio-3);
+  color: var(--color-tinta-suave);
+}
+
+.seccion--oscura .seccion__bajada,
+.seccion--verde .seccion__bajada {
+  color: var(--color-papel);
+}
+
+.seccion__extra {
+  margin-top: var(--espacio-3);
+  font-size: 0.9375rem;
+}
+
+.enlace {
+  color: var(--color-terracota);
+  font-weight: 500;
+}
+
+/* ---------- 7. Inicio (hero) ---------- */
+.hero {
+  padding-top: var(--espacio-6);
+}
+
+.hero__titulo {
+  font-family: var(--fuente-titulo);
+  font-size: 2.5rem;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.hero__bajada {
+  margin-top: var(--espacio-4);
+  font-size: 1.0625rem;
+  color: var(--color-tinta-suave);
+}
+
+.hero__botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-3);
+  margin-top: var(--espacio-5);
+}
+
+/* Indicador "Abierto ahora": el texto lo escribe js/main.js en la fase 4 */
+.estado {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-1) var(--espacio-4);
+  margin-top: var(--espacio-5);
+  font-size: 0.875rem;
+  color: var(--color-tinta-suave);
+}
+
+.estado__texto {
+  color: var(--color-tinta);
+}
+
+.estado__texto::before {
+  content: "";
+  display: inline-block;
+  width: 0.625rem;
+  height: 0.625rem;
+  margin-right: var(--espacio-2);
+  border-radius: 50%;
+  background: var(--color-verde);
+}
+
+.hero__figura {
+  position: relative;
+  margin-top: var(--espacio-6);
+}
+
+/* El fondo y el aspect-ratio sostienen el lugar de la foto mientras es un placeholder */
+.hero__img,
+.nosotros__img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: var(--tapa-beige);
+  border-radius: var(--radio);
+  color: var(--color-tinta-suave);
+  font-size: 0.8125rem;
+}
+
+.hero__badge {
+  position: absolute;
+  top: calc(var(--espacio-4) * -1);
+  right: calc(var(--espacio-2) * -1);
+  display: grid;
+  place-items: center;
+  width: 6rem;
+  height: 6rem;
+  padding: var(--espacio-3);
+  border-radius: 50%;
+  background: var(--color-verde);
+  color: var(--color-crema);
+  font-family: var(--fuente-titulo);
+  font-size: 0.8125rem;
+  font-style: italic;
+  line-height: 1.2;
+  text-align: center;
+  transform: rotate(8deg);
+}
+
+/* ---------- 8. Novedades ---------- */
+.libros {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--espacio-5) var(--espacio-3);
+  margin-top: var(--espacio-6);
+}
+
+.libro {
+  display: flex;
+  flex-direction: column;
+}
+
+/* La tapa es una imagen 2:3; las etiquetas (Nuevo, Usado...) van encima */
+.libro__tapa {
+  position: relative;
+  aspect-ratio: 2 / 3;               /* todas las tapas, mismo tamaño */
+  background: var(--tapa-beige);
+  border-radius: 0.25rem var(--espacio-2) var(--espacio-2) 0.25rem;
+  box-shadow: 0 4px 12px rgb(34 29 24 / 0.18);
+}
+
+.libro__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.libro__etiqueta {
+  position: absolute;
+  top: var(--espacio-2);
+  right: var(--espacio-2);
+  padding: 0.125rem var(--espacio-2);
+  background: var(--color-crema);
+  border-radius: 999px;
+  color: var(--color-tinta);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.libro__titulo {
+  margin-top: var(--espacio-3);
+  font-family: var(--fuente-titulo);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.libro__autor {
+  font-size: 0.8125rem;
+  color: var(--color-tinta-suave);
+}
+
+.libro__resena {
+  margin-top: var(--espacio-2);
+  padding-left: var(--espacio-2);
+  border-left: 2px solid var(--color-terracota);
+  font-size: 0.8125rem;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--color-tinta-suave);
+}
+
+.libro__precio {
+  margin-top: auto;                  /* alinea precio y botón al pie de la tarjeta */
+  padding-top: var(--espacio-3);
+  font-weight: 600;
+}
+
+.libro__btn {
+  margin-top: var(--espacio-2);
+}
+
+/* ---------- 9. Qué hacemos ---------- */
+.servicios {
+  display: grid;
+  gap: var(--espacio-3);
+  margin-top: var(--espacio-6);
+}
+
+.servicio {
+  height: 100%;
+  padding: var(--espacio-5);
+  background: var(--color-tarjeta);
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radio);
+}
+
+.servicio__titulo {
+  font-family: var(--fuente-titulo);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.servicio__texto {
+  margin-top: var(--espacio-2);
+  font-size: 0.9375rem;
+  color: var(--color-tinta-suave);
+}
+
+.servicio--destacado {
+  background: var(--color-verde);
+  border-color: var(--color-verde);
+  color: var(--color-crema);
+}
+
+.servicio--destacado .servicio__texto {
+  color: var(--color-papel);
+}
+
+/* ---------- 10. Agenda ---------- */
+.eventos {
+  display: grid;
+  gap: var(--espacio-4);
+  margin-top: var(--espacio-6);
+}
+
+.evento {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+  align-items: flex-start;
+  padding: var(--espacio-5);
+  background: var(--color-oscuro-2);
+  border-radius: var(--radio);
+}
+
+.evento--club {
+  background: var(--color-terracota);
+}
+
+.evento__tipo {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-terracota-claro);
+}
+
+.evento--club .evento__tipo {
+  color: var(--color-crema);
+}
+
+.evento__fecha {
+  font-family: var(--fuente-titulo);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.evento__titulo {
+  font-family: var(--fuente-titulo);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.evento__desc,
+.evento__meta {
+  font-size: 0.9375rem;
+}
+
+.evento__meta {
+  font-weight: 500;
+}
+
+.evento .btn {
+  margin-top: auto;
+}
+
+/* ---------- 11. Nosotros ---------- */
+.nosotros__figura {
+  margin-top: var(--espacio-6);
+}
+
+.nosotros__pie {
+  margin-top: var(--espacio-2);
+  font-size: 0.8125rem;
+  color: var(--color-tinta-suave);
+}
+
+.nosotros__cita {
+  margin-top: var(--espacio-6);
+  font-family: var(--fuente-titulo);
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.nosotros__texto {
+  margin-top: var(--espacio-4);
+  color: var(--color-tinta-suave);
+}
+
+.valores {
+  display: grid;
+  gap: var(--espacio-4);
+  margin-top: var(--espacio-6);
+  counter-reset: valor;
+}
+
+.valor {
+  counter-increment: valor;
+  padding-top: var(--espacio-3);
+  border-top: 1px solid var(--color-linea);
+}
+
+/* Numeración 01, 02, 03 generada con CSS (es decorativa) */
+.valor::before {
+  content: "0" counter(valor);
+  font-family: var(--fuente-titulo);
+  font-size: 1.125rem;
+  color: var(--color-terracota);
+}
+
+.valor__titulo {
+  font-family: var(--fuente-titulo);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.valor__texto {
+  font-size: 0.9375rem;
+  color: var(--color-tinta-suave);
+}
+
+/* ---------- 12. Visitanos ---------- */
+.mapa {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  margin-top: var(--espacio-6);
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radio);
+  background: var(--tapa-beige);
+}
+
+.tarjeta {
+  margin-top: var(--espacio-4);
+  padding: var(--espacio-5);
+  background: var(--color-tarjeta);
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radio);
+}
+
+.tarjeta__titulo {
+  margin-top: var(--espacio-4);
+  font-family: var(--fuente-titulo);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.tarjeta > .tarjeta__titulo:first-child {
+  margin-top: 0;
+}
+
+.direccion {
+  font-style: normal;
+  color: var(--color-tinta-suave);
+}
+
+.direccion__calle {
+  display: block;
+  font-family: var(--fuente-titulo);
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--color-tinta);
+}
+
+.horarios {
+  width: 100%;
+  margin-top: var(--espacio-2);
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.horarios th,
+.horarios td {
+  padding: var(--espacio-2) 0;
+  border-bottom: 1px solid var(--color-linea);
+  text-align: left;
+}
+
+.horarios td {
+  text-align: right;
+  font-weight: 500;
+}
+
+.transporte {
+  display: grid;
+  gap: var(--espacio-2);
+  margin-top: var(--espacio-2);
+  font-size: 0.9375rem;
+}
+
+.pagos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2);
+  margin-top: var(--espacio-3);
+}
+
+.pagos__item {
+  padding: var(--espacio-1) var(--espacio-3);
+  border: 1px solid var(--color-tinta);
+  border-radius: 999px;
+  font-size: 0.8125rem;
+}
+
+.pagos__item--destacado {
+  background: var(--color-verde);
+  border-color: var(--color-verde);
+  color: var(--color-crema);
+}
+
+/* ---------- 13. Contacto ---------- */
+.medios {
+  display: grid;
+  gap: var(--espacio-3);
+  margin-top: var(--espacio-5);
+}
+
+.medios__item {
+  display: flex;
+  flex-direction: column;
+}
+
+.medios__enlace {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.medios__nota {
+  font-size: 0.8125rem;
+  color: var(--color-papel);
+}
+
+.formulario {
+  margin-top: var(--espacio-6);
+  padding: var(--espacio-5);
+  background: rgb(245 238 223 / 0.08);
+  border: 1px solid rgb(245 238 223 / 0.25);
+  border-radius: var(--radio);
+}
+
+.formulario--claro {
+  --foco: var(--color-terracota);
+  background: var(--color-crema);
+  border-color: var(--color-crema);
+  color: var(--color-tinta);
+}
+
+.formulario__titulo {
+  font-family: var(--fuente-titulo);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.formulario__texto {
+  margin-top: var(--espacio-2);
+  font-size: 0.9375rem;
+  color: var(--color-tinta-suave);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-1);
+  margin-bottom: var(--espacio-4);
+  margin-top: var(--espacio-4);
+}
+
+.campo__label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.campo__input {
+  width: 100%;
+  padding: var(--espacio-3);
+  background: var(--color-crema);
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radio-chico);
+  color: var(--color-tinta);
+  font: inherit;
+}
+
+.campo__input::placeholder {
+  color: var(--color-tinta-suave);
+}
+
+textarea.campo__input {
+  resize: vertical;
+}
+
+/* ---------- 14. Footer ---------- */
+.footer {
+  display: grid;
+  gap: var(--espacio-1);
+  padding: var(--espacio-5) var(--margen-lateral) 6rem; /* espacio extra: no tapar con el botón flotante */
+  background: var(--color-verde);
+  border-top: 1px solid rgb(245 238 223 / 0.25);
+  color: var(--color-papel);
+  font-size: 0.8125rem;
+}
+
+/* ---------- 15. Botón flotante de WhatsApp ---------- */
+.flotante {
+  position: fixed;
+  right: var(--espacio-4);
+  bottom: var(--espacio-4);
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+  padding: 0 var(--espacio-5);
+  background: var(--color-whatsapp);
+  color: var(--color-crema);
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgb(34 29 24 / 0.3);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   16. Detalles visuales
+   ========================================================================== */
+
+/* Indicador cerrado: el punto pasa de verde a terracota */
+.estado--cerrado .estado__texto::before {
+  background: var(--color-terracota);
+}
+
+/* Borde inferior del hero que imita el corte de una hoja (festón) */
+.hero {
+  position: relative;
+  padding-bottom: var(--espacio-8);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 0.75rem;
+  background: radial-gradient(circle at 0.625rem 0, transparent 0.4375rem, var(--color-papel) 0.47rem) 0 0 / 1.25rem 0.75rem repeat-x;
+}
+
+/* Subrayado dibujado a mano bajo la palabra en cursiva de los títulos de sección */
+.seccion__titulo em {
+  padding-bottom: 0.1em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5 Q 15 1 30 5 T 60 4 T 99 5' fill='none' stroke='%23A64A28' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") bottom / 100% 0.35em no-repeat;
+}
+
+/* Iconos de los servicios: emoji decorativos con texto alternativo vacío */
+.servicio::before {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-bottom: var(--espacio-3);
+  background: var(--color-verde-claro);
+  border-radius: var(--radio-chico);
+  font-size: 1.125rem;
+}
+
+.servicios li:nth-child(1) .servicio::before { content: "📚"; content: "📚" / ""; }
+.servicios li:nth-child(2) .servicio::before { content: "♻️"; content: "♻️" / ""; }
+.servicios li:nth-child(3) .servicio::before { content: "🧸"; content: "🧸" / ""; }
+.servicios li:nth-child(4) .servicio::before { content: "🔎"; content: "🔎" / ""; }
+.servicios li:nth-child(5) .servicio::before { content: "🛵"; content: "🛵" / ""; }
+.servicios li:nth-child(6) .servicio::before { content: "🎁"; content: "🎁" / ""; background: rgb(245 238 223 / 0.15); }
+
+/* ==========================================================================
+   17. Tablet · desde 768 px
+   ========================================================================== */
+@media (min-width: 768px) {
+  :root {
+    --ancho-max: 56rem;
+  }
+
+  .seccion {
+    padding-block: var(--espacio-8);
+  }
+
+  /* Header en una sola fila; el menú hamburguesa ya no hace falta */
+  .header {
+    flex-wrap: nowrap;
+    padding-block: var(--espacio-3);
+    gap: var(--espacio-5);
+  }
+
+  .js .header {
+    padding-bottom: var(--espacio-3);
+  }
+
+  .js .header__menu-btn {
+    display: none;
+  }
+
+  .nav,
+  .js .nav {
+    display: block;
+    flex-basis: auto;
+    margin-inline: auto;
+  }
+
+  .js .nav__lista {
+    flex-direction: row;
+    gap: var(--espacio-5);
+  }
+
+  .nav__enlace,
+  .js .nav__enlace {
+    padding: var(--espacio-2) 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .nav__enlace:hover,
+  .js .nav__enlace:hover {
+    border-bottom-color: var(--color-terracota);
+  }
+
+  .header__cta {
+    display: inline-flex;
+  }
+
+  .flotante {
+    display: none;                   /* en pantallas grandes el WhatsApp está en el header */
+  }
+
+  .footer {
+    padding-bottom: var(--espacio-5);
+  }
+
+  /* Títulos */
+  .seccion__titulo {
+    font-size: 2.5rem;
+  }
+
+  .hero__titulo {
+    font-size: 3.5rem;
+  }
+
+  /* Hero a dos columnas */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--espacio-7);
+    align-items: center;
+    padding-top: var(--espacio-8);
+  }
+
+  .hero__figura {
+    margin-top: 0;
+  }
+
+  .hero__badge {
+    width: 7rem;
+    height: 7rem;
+    font-size: 0.9375rem;
+  }
+
+  /* Novedades: 4 columnas */
+  .libros {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--espacio-6) var(--espacio-4);
+  }
+
+  /* Servicios y agenda: 3 columnas */
+  .servicios,
+  .eventos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* Nosotros: foto a la izquierda, texto a la derecha */
+  .nosotros {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espacio-7);
+    align-items: center;
+  }
+
+  .nosotros__figura {
+    margin-top: 0;
+  }
+
+  .valores {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Visitanos: mapa a la izquierda, tarjetas a la derecha */
+  .visita {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--espacio-5);
+    margin-top: var(--espacio-6);
+  }
+
+  .visita .mapa {
+    height: 100%;
+    min-height: 26rem;
+    margin-top: 0;
+    aspect-ratio: auto;
+  }
+
+  .visita__info .tarjeta:first-child {
+    margin-top: 0;
+  }
+
+  /* Contacto: intro y newsletter a la izquierda, formulario a la derecha */
+  .contacto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espacio-7);
+    align-items: start;
+  }
+
+  .contacto > .formulario {
+    margin-top: 0;
+  }
+
+  .footer {
+    grid-template-columns: 1fr auto;
+    gap: var(--espacio-5);
+  }
+}
+
+/* ==========================================================================
+   18. Escritorio · desde 1200 px
+   ========================================================================== */
+@media (min-width: 1200px) {
+  :root {
+    --ancho-max: 72rem;
+  }
+
+  .seccion__titulo {
+    font-size: 2.75rem;
+  }
+
+  .hero__titulo {
+    font-size: 4.25rem;
+  }
+
+  .hero__bajada {
+    font-size: 1.1875rem;
+  }
+
+  .hero__badge {
+    width: 8rem;
+    height: 8rem;
+    font-size: 1.0625rem;
+  }
+
+  .libro__titulo {
+    font-size: 1.0625rem;
+  }
+
+  .servicios,
+  .eventos {
+    gap: var(--espacio-5);
+  }
+}

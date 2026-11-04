@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Librería La Hoja Suelta · Villa Crespo, Buenos Aires</title>
+  <meta name="description" content="Librería independiente de libros nuevos y usados en Villa Crespo, Buenos Aires. Novedades, club de lectura, presentaciones, canje de usados y reservas por WhatsApp.">
+  <meta name="theme-color" content="#F5EEDF">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="img/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <!-- Ajustar el dominio si es distinto -->
+  <link rel="canonical" href="https://lahojasuelta.com.ar/">
+
+  <!-- Open Graph: la vista previa al compartir en WhatsApp, Instagram y redes. Imagen sugerida: 1200x630 -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="Librería La Hoja Suelta">
+  <meta property="og:title" content="Librería La Hoja Suelta · Libros con historia, en un barrio con historias">
+  <meta property="og:description" content="Libros nuevos y usados en Villa Crespo. Club de lectura, presentaciones y reservas por WhatsApp.">
+  <meta property="og:url" content="https://lahojasuelta.com.ar/">
+  <meta property="og:image" content="https://lahojasuelta.com.ar/img/og-imagen.webp">
+  <meta property="og:image:alt" content="Estantes de la librería La Hoja Suelta llenos de libros">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Datos estructurados (schema.org BookStore) para Google. EDITAR HORARIOS acá también si cambian. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BookStore",
+    "name": "Librería La Hoja Suelta",
+    "description": "Librería independiente de libros nuevos y usados en Villa Crespo, Buenos Aires.",
+    "url": "https://lahojasuelta.com.ar/",
+    "image": "https://lahojasuelta.com.ar/img/og-imagen.webp",
+    "telephone": "+5491155550123",
+    "email": "hola@lahojasuelta.com.ar",
+    "foundingDate": "2014",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Corrientes 5280",
+      "addressLocality": "Villa Crespo",
+      "addressRegion": "Ciudad Autónoma de Buenos Aires",
+      "addressCountry": "AR"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "10:00", "closes": "20:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "21:00" }
+    ],
+    "paymentAccepted": "Efectivo, tarjeta de débito, tarjeta de crédito, Mercado Pago",
+    "sameAs": ["https://www.instagram.com/lahojasuelta.libros/"]
+  }
+  </script>
+
+  <!-- Dos familias: Lora (títulos) e Inter (texto). display=swap evita texto invisible mientras cargan. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Lora:ital,wght@0,500;0,600;1,500;1,600&amp;display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <a class="salto" href="#contenido">Saltar al contenido</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header">
+    <a class="header__marca" href="#inicio">
+      <img class="header__logo" src="img/logo.svg" width="36" height="36" alt="">
+      <strong class="header__nombre">La Hoja Suelta</strong>
+      <span class="header__sub">Librería · Villa Crespo</span>
+    </a>
+
+    <!-- El botón del menú mobile se activa con JS en la fase 4 -->
+    <button class="header__menu-btn" type="button" aria-expanded="false" aria-controls="menu-principal">Menú</button>
+
+    <nav class="nav" aria-label="Principal" id="menu-principal">
+      <ul class="nav__lista">
+        <li><a class="nav__enlace" href="#novedades">Novedades</a></li>
+        <li><a class="nav__enlace" href="#que-hacemos">Qué hacemos</a></li>
+        <li><a class="nav__enlace" href="#agenda">Agenda</a></li>
+        <li><a class="nav__enlace" href="#nosotros">Nosotros</a></li>
+        <li><a class="nav__enlace" href="#visitanos">Visitanos</a></li>
+        <li><a class="nav__enlace" href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn btn--primario header__cta" href="https://wa.me/5491155550123?text=Hola%2C%20quiero%20reservar%20un%20libro">Reservar un libro</a>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ============ 1. INICIO ============ -->
+    <section class="seccion hero" id="inicio" aria-labelledby="titulo-inicio">
+      <div class="hero__texto">
+      <p class="eyebrow">Librería independiente · Desde 2014</p>
+      <h1 class="hero__titulo" id="titulo-inicio">Libros con historia, en un barrio con <em>historias</em></h1>
+      <p class="hero__bajada">Nuevos, usados y agotados en Av. Corrientes, a dos cuadras del subte. Vení a curiosear sin apuro: acá nadie te toma examen de Borges.</p>
+
+      <p class="hero__botones">
+        <a class="btn btn--primario" href="#novedades">Ver novedades <span aria-hidden="true">→</span></a>
+        <a class="btn btn--secundario" href="#visitanos">Cómo llegar</a>
+      </p>
+
+      <!-- El JS de la fase 4 completa este texto según la hora de Buenos Aires -->
+      <p class="estado">
+        <strong class="estado__texto" id="estado-horario">Consultá nuestros horarios</strong>
+        <span class="estado__detalle" id="estado-detalle"></span>
+        <span class="estado__direccion">Av. Corrientes 5280</span>
+      </p>
+      </div>
+
+      <figure class="hero__figura">
+        <!-- Ilustración provisoria: se puede reemplazar por una foto real con el mismo nombre (ver README) -->
+        <img class="hero__img" src="img/local-fachada.webp" width="1200" height="800" alt="Estantes de la librería La Hoja Suelta llenos de libros de todos los colores">
+        <figcaption class="hero__badge">Canje de usados todos los días</figcaption>
+      </figure>
+    </section>
+
+    <!-- ============ 2. NOVEDADES ============ -->
+    <section class="seccion seccion--papel" id="novedades" aria-labelledby="titulo-novedades">
+      <p class="eyebrow">Novedades y recomendados</p>
+      <h2 class="seccion__titulo" id="titulo-novedades">Lo que estamos leyendo</h2>
+      <p class="seccion__bajada">Elegidos y comentados por nosotras. Si te tienta, te lo guardamos 48 h.</p>
+      <p class="seccion__extra"><a class="enlace" href="https://www.instagram.com/lahojasuelta.libros/">Ver todo en Instagram</a></p>
+
+      <!--
+        =====================================================
+        EDITAR NOVEDADES: cada <article class="libro"> es un libro.
+        Para agregar uno, copiá un bloque entero y cambiá:
+          título, autor, precio, recomendación, etiqueta
+          y el texto del enlace de WhatsApp (el título va codificado: espacios = %20).
+        La tapa es una imagen de img/tapas/ (800x1200, proporción 2:3). Cambiá el nombre del archivo
+        y el texto alt. La etiqueta (Nuevo, Usado, Infantil, Agotado) es opcional: borrá el <span> si no va.
+        Quitá un libro borrando su <article> completo.
+        =====================================================
+      -->
+      <div class="libros">
+
+        <article class="libro">
+          <div class="libro__tapa">
+            <img class="libro__img" src="img/tapas/tapa-rio.webp" width="800" height="1200" loading="lazy" alt="Tapa de El río que no supimos nombrar, de Inés Albarracín">
+            <span class="libro__etiqueta">Nuevo</span>
+          </div>
+          <h3 class="libro__titulo">El río que no supimos nombrar</h3>
+          <p class="libro__autor">Inés Albarracín</p>
+          <blockquote class="libro__resena"><p>Una saga familiar en el Delta que se lee como quien rema: despacio y sin querer llegar.</p></blockquote>
+          <p class="libro__precio">$24.900</p>
+          <a class="btn btn--verde libro__btn" href="https://wa.me/5491155550123?text=Hola%2C%20quiero%20reservar%20%22El%20r%C3%ADo%20que%20no%20supimos%20nombrar%22">Reservar por WhatsApp</a>
+        </article>
+
+        <article class="libro">
+          <div class="libro__tapa">
+            <img class="libro__img" src="img/tapas/tapa-siesta.webp" width="800" height="1200" loading="lazy" alt="Tapa de Cuaderno de la siesta, de Tomás Leiva">
+          </div>
+          <h3 class="libro__titulo">Cuaderno de la siesta</h3>
+          <p class="libro__autor">Tomás Leiva</p>
+          <blockquote class="libro__resena"><p>Poemas cortos para leer en el 55. Ideal para quien juró que no le gusta la poesía.</p></blockquote>
+          <p class="libro__precio">$16.500</p>
+          <a class="btn btn--verde libro__btn" href="https://wa.me/5491155550123?text=Hola%2C%20quiero%20reservar%20%22Cuaderno%20de%20la%20siesta%22">Reservar por WhatsApp</a>
+        </article>
+
+        <article class="libro">
+          <div class="libro__tapa">
+            <img class="libro__img" src="img/tapas/tapa-vereda.webp" width="800" height="1200" loading="lazy" alt="Tapa de Elogio de la vereda, de Marta Echeverry">
+            <span class="libro__etiqueta">Usado</span>
+          </div>
+          <h3 class="libro__titulo">Elogio de la vereda</h3>
+          <p class="libro__autor">Marta Echeverry</p>
+          <blockquote class="libro__resena"><p>Primera edición, impecable. Sobre caminar Buenos Aires y mirar para arriba.</p></blockquote>
+          <p class="libro__precio">$9.800</p>
+          <a class="btn btn--verde libro__btn" href="https://wa.me/5491155550123?text=Hola%2C%20quiero%20reservar%20%22Elogio%20de%20la%20vereda%22">Reservar por WhatsApp</a>
+        </article>
+
+        <article class="libro">
+          <div class="libro__tapa">
+            <img class="libro__img" src="img/tapas/tapa-noche.webp" width="800" height="1200" loading="lazy" alt="Tapa de Los que vuelven de noche, de Julián Saraiva">
+          </div>
+          <h3 class="libro__titulo">Los que vuelven de noche</h3>
+          <p class="libro__autor">Julián Saraiva</p>
+          <blockquote class="libro__resena"><p>Terror rioplatense del bueno. No lo leas antes de dormir (nosotras no pudimos).</p></blockquote>
+          <p class="libro__precio">$21.300</p>
+          <a class="btn btn--verde libro__btn" href="https://wa.me/5491155550123?text=Hola%2C%20quiero%20reservar%20%22Los%20que%20vuelven%20de%20noche%22">Reservar por WhatsApp</a>
+        </article>
+
+        <article class="libro">
+          <div class="libro__tapa">
+            <img class="libro__img" src="img/tapas/tapa-olga.webp" width="800" height="1200" loading="lazy" alt="Tapa de Olga y el gato bibliotecario, de Lucía Ferré">
+            <span class="libro__etiqueta">Infantil</span>
+          </div>
+          <h3 class="libro__titulo">Olga y el gato bibliotecario</h3>
+          <p class="libro__autor">Lucía Ferré</p>
+          <blockquote class="libro__resena"><p>El favorito del rincón infantil. Los chicos lo piden de nuevo apenas termina.</p></blockquote>
+          <p class="libro__precio">$14.200</p>
+          <a class="btn btn--verde libro__btn" href="https://wa.me/5491155550123?text=Hola%2C%20quiero%20reservar%20%22Olga%20y%20el%20gato%20bibliotecario%22">Reservar por WhatsApp</a>
+        </article>
+
+        <article class="libro">
+          <div class="libro__tapa">
+            <img class="libro__img" src="img/tapas/tapa-mudarse.webp" width="800" height="1200" loading="lazy" alt="Tapa de Manual para mudarse sola, de Carla Montiel">
+          </div>
+          <h3 class="libro__titulo">Manual para mudarse sola</h3>
+          <p class="libro__autor">Carla Montiel</p>
+          <blockquote class="libro__resena"><p>Humor, cajas y una vida que se deja de escribir. La regalamos a media barrio.</p></blockquote>
+          <p class="libro__precio">$22.700</p>
+          <a class="btn btn--verde libro__btn" href="https://wa.me/5491155550123?text=Hola%2C%20quiero%20reservar%20%22Manual%20para%20mudarse%20sola%22">Reservar por WhatsApp</a>
+        </article>
+
+        <article class="libro">
+          <div class="libro__tapa">
+            <img class="libro__img" src="img/tapas/tapa-corrientes.webp" width="800" height="1200" loading="lazy" alt="Tapa de Corrientes, de punta a punta, de Ramiro Ugarte">
+            <span class="libro__etiqueta">Agotado</span>
+          </div>
+          <h3 class="libro__titulo">Corrientes, de punta a punta</h3>
+          <p class="libro__autor">Ramiro Ugarte</p>
+          <blockquote class="libro__resena"><p>Inconseguible, y lo conseguimos. Un solo ejemplar: no lo dejes pasar.</p></blockquote>
+          <p class="libro__precio">$18.000</p>
+          <a class="btn btn--verde libro__btn" href="https://wa.me/5491155550123?text=Hola%2C%20quiero%20reservar%20%22Corrientes%2C%20de%20punta%20a%20punta%22">Reservar por WhatsApp</a>
+        </article>
+
+        <article class="libro">
+          <div class="libro__tapa">
+            <img class="libro__img" src="img/tapas/tapa-cinerex.webp" width="800" height="1200" loading="lazy" alt="Tapa de La última función del Cine Rex, de Abril Quintana">
+          </div>
+          <h3 class="libro__titulo">La última función del Cine Rex</h3>
+          <p class="libro__autor">Abril Quintana</p>
+          <blockquote class="libro__resena"><p>Misterio y amistad en un cine abandonado. Para lectores de 12 a 99.</p></blockquote>
+          <p class="libro__precio">$17.400</p>
+          <a class="btn btn--verde libro__btn" href="https://wa.me/5491155550123?text=Hola%2C%20quiero%20reservar%20%22La%20%C3%BAltima%20funci%C3%B3n%20del%20Cine%20Rex%22">Reservar por WhatsApp</a>
+        </article>
+
+      </div>
+      <!-- FIN EDITAR NOVEDADES -->
+    </section>
+
+    <!-- ============ 3. QUÉ HACEMOS ============ -->
+    <section class="seccion" id="que-hacemos" aria-labelledby="titulo-servicios">
+      <p class="eyebrow">Qué hacemos</p>
+      <h2 class="seccion__titulo" id="titulo-servicios">Mucho más que <em>estantes</em></h2>
+      <p class="seccion__bajada">Si no está, lo conseguimos. Si ya lo leíste, lo canjeamos. Si es para regalar, te ayudamos a elegir.</p>
+
+      <ul class="servicios">
+        <li>
+          <article class="servicio">
+            <h3 class="servicio__titulo">Libros nuevos</h3>
+            <p class="servicio__texto">Narrativa latinoamericana, poesía, ensayo y lo mejor de las editoriales independientes argentinas: Eterna Cadencia, Blatt &amp; Ríos, Godot y Sigilo.</p>
+          </article>
+        </li>
+        <li>
+          <article class="servicio">
+            <h3 class="servicio__titulo">Usados y canje</h3>
+            <p class="servicio__texto">Compramos, vendemos y canjeamos. Traé los que no releés y llevate otros.</p>
+          </article>
+        </li>
+        <li>
+          <article class="servicio">
+            <h3 class="servicio__titulo">Rincón infantil</h3>
+            <p class="servicio__texto">Sección infantil y juvenil con almohadones y lectura en voz alta los sábados.</p>
+          </article>
+        </li>
+        <li>
+          <article class="servicio">
+            <h3 class="servicio__titulo">Pedidos especiales</h3>
+            <p class="servicio__texto">¿No lo tenemos? Lo conseguimos en 7 a 10 días y te avisamos por WhatsApp.</p>
+          </article>
+        </li>
+        <li>
+          <article class="servicio">
+            <h3 class="servicio__titulo">Envíos</h3>
+            <p class="servicio__texto">En moto por CABA a $2.500. Al resto del país, por correo.</p>
+          </article>
+        </li>
+        <li>
+          <article class="servicio servicio--destacado">
+            <h3 class="servicio__titulo">Gift cards</h3>
+            <p class="servicio__texto">Desde $10.000. El regalo perfecto para quien ya tiene todo (menos tiempo para leerlo).</p>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============ 4. AGENDA ============ -->
+    <section class="seccion seccion--oscura" id="agenda" aria-labelledby="titulo-agenda">
+      <p class="eyebrow">Agenda</p>
+      <h2 class="seccion__titulo" id="titulo-agenda">Pasan cosas entre los libros</h2>
+      <p class="seccion__bajada">Presentaciones y lecturas los sábados, club de lectura el primer jueves del mes. Anotate y te guardamos lugar.</p>
+
+      <!--
+        =====================================================
+        EDITAR EVENTOS: cada <article class="evento"> es un evento.
+        Cambiá: fecha (datetime="AAAA-MM-DDThh:mm" y el texto visible),
+        tipo, título, descripción, hora, precio y el enlace de WhatsApp
+        (el nombre del evento va codificado: espacios = %20).
+        La clase extra "evento" + "club" (modificador BEM, dos guiones) resalta el club de lectura en terracota.
+        Borrá el <article> completo cuando el evento ya pasó.
+        =====================================================
+      -->
+      <div class="eventos">
+
+        <article class="evento evento--club">
+          <p class="evento__tipo">Club de lectura</p>
+          <p class="evento__fecha"><time datetime="2026-11-05T19:00">Jue 5 nov</time></p>
+          <h3 class="evento__titulo">Club de lectura de noviembre</h3>
+          <p class="evento__desc">Charlamos sobre "El río que no supimos nombrar". No hace falta haberlo terminado.</p>
+          <p class="evento__meta">19 h · $3.000 con café incluido</p>
+          <a class="btn btn--claro" href="https://wa.me/5491155550123?text=Hola%2C%20quiero%20anotarme%20al%20Club%20de%20lectura%20de%20noviembre">Anotarme por WhatsApp</a>
+        </article>
+
+        <article class="evento">
+          <p class="evento__tipo">Presentación</p>
+          <p class="evento__fecha"><time datetime="2026-11-07T18:00">Sáb 7 nov</time></p>
+          <h3 class="evento__titulo">"Cuaderno de la siesta"</h3>
+          <p class="evento__desc">Tomás Leiva lee su libro y conversa con la poeta Ana Ruiz. Hay vino.</p>
+          <p class="evento__meta">18 h · Entrada libre</p>
+          <a class="btn btn--primario" href="https://wa.me/5491155550123?text=Hola%2C%20quiero%20anotarme%20a%20la%20presentaci%C3%B3n%20de%20%22Cuaderno%20de%20la%20siesta%22">Anotarme por WhatsApp</a>
+        </article>
+
+        <article class="evento">
+          <p class="evento__tipo">Lectura en vivo</p>
+          <p class="evento__fecha"><time datetime="2026-11-14T11:00">Sáb 14 nov</time></p>
+          <h3 class="evento__titulo">Cuentos para la hora del mate</h3>
+          <p class="evento__desc">Lectura de cuentos para chicos de 4 a 8 años en el rincón infantil.</p>
+          <p class="evento__meta">11 h · Entrada libre</p>
+          <a class="btn btn--primario" href="https://wa.me/5491155550123?text=Hola%2C%20quiero%20anotarme%20a%20%22Cuentos%20para%20la%20hora%20del%20mate%22">Anotarme por WhatsApp</a>
+        </article>
+
+      </div>
+      <!-- FIN EDITAR EVENTOS -->
+    </section>
+
+    <!-- ============ 5. NOSOTROS ============ -->
+    <section class="seccion nosotros" id="nosotros" aria-labelledby="titulo-nosotros">
+      <figure class="nosotros__figura">
+        <!-- Ilustración provisoria: se puede reemplazar por una foto real con el mismo nombre -->
+        <img class="nosotros__img" src="img/equipo-hermanas.webp" width="1200" height="800" loading="lazy" alt="Ilustración de las dos hermanas fundadoras sonriendo frente a los estantes, una con un libro abierto y la otra con un libro cerrado">
+        <figcaption class="nosotros__pie">Las fundadoras, entre estantes.</figcaption>
+      </figure>
+
+      <div class="nosotros__cuerpo">
+      <p class="eyebrow">Nosotros</p>
+      <h2 class="seccion__titulo" id="titulo-nosotros">Dos hermanas, muchas fichas y un local en Corrientes</h2>
+
+
+      <blockquote class="nosotros__cita">
+        <p>Trabajamos veinte años en bibliotecas. Un día decidimos que los libros también merecían que alguien los recomendara mirando a los ojos.</p>
+      </blockquote>
+      <p class="nosotros__texto">Abrimos en 2014 en Villa Crespo. Desde entonces elegimos cada libro a mano y seguimos ordenando todo con la manía de las ex bibliotecarias.</p>
+
+      <ol class="valores">
+        <li class="valor">
+          <h3 class="valor__titulo">Independientes</h3>
+          <p class="valor__texto">Sin cadenas ni algoritmos.</p>
+        </li>
+        <li class="valor">
+          <h3 class="valor__titulo">Curaduría</h3>
+          <p class="valor__texto">Leemos lo que recomendamos.</p>
+        </li>
+        <li class="valor">
+          <h3 class="valor__titulo">Barrio</h3>
+          <p class="valor__texto">Somos vecinas de la vereda.</p>
+        </li>
+      </ol>
+      </div>
+    </section>
+
+    <!-- ============ 6. VISITANOS ============ -->
+    <section class="seccion seccion--papel" id="visitanos" aria-labelledby="titulo-visitanos">
+      <p class="eyebrow">Visitanos</p>
+      <h2 class="seccion__titulo" id="titulo-visitanos">Te esperamos en Villa Crespo</h2>
+
+      <div class="visita">
+      <iframe class="mapa"
+        title="Mapa de Google Maps con la ubicación de la librería, Av. Corrientes 5280"
+        src="https://www.google.com/maps?q=Av.+Corrientes+5280,+Villa+Crespo,+Buenos+Aires&amp;output=embed"
+        width="600" height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+      <div class="visita__info">
+      <div class="tarjeta">
+        <address class="direccion">
+          <strong class="direccion__calle">Av. Corrientes 5280</strong>
+          Villa Crespo, CABA
+        </address>
+
+        <h3 class="tarjeta__titulo">Horarios</h3>
+        <!-- EDITAR HORARIOS: acá se leen; el indicador "Abierto ahora" tiene su propia configuración en js/main.js (fase 4) -->
+        <table class="horarios">
+          <caption class="sr-only">Horarios de atención</caption>
+          <thead class="sr-only">
+            <tr><th scope="col">Día</th><th scope="col">Horario</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Lunes a viernes</th><td>10 a 20 h</td></tr>
+            <tr><th scope="row">Sábados</th><td>10 a 21 h</td></tr>
+            <tr><th scope="row">Domingos</th><td>Cerrado</td></tr>
+            <tr><th scope="row">Feriados</th><td>Ver Instagram</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tarjeta">
+        <h3 class="tarjeta__titulo">Cómo llegar</h3>
+        <ul class="transporte">
+          <li><strong>Subte:</strong> línea B, estación Malabia, a 2 cuadras.</li>
+          <li><strong>Colectivos:</strong> 15, 42, 55 y 65.</li>
+        </ul>
+      </div>
+
+      <div class="tarjeta">
+        <h3 class="tarjeta__titulo">Medios de pago</h3>
+        <ul class="pagos">
+          <li class="pagos__item pagos__item--destacado">Efectivo (10% de descuento)</li>
+          <li class="pagos__item">Débito</li>
+          <li class="pagos__item">Crédito en 3 cuotas sin interés</li>
+          <li class="pagos__item">Mercado Pago</li>
+        </ul>
+      </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- ============ 7. CONTACTO ============ -->
+    <section class="seccion seccion--verde" id="contacto" aria-labelledby="titulo-contacto">
+      <div class="contacto">
+      <div class="contacto__intro">
+      <p class="eyebrow">Contacto</p>
+      <h2 class="seccion__titulo" id="titulo-contacto">¿Buscás algo en particular?</h2>
+      <p class="seccion__bajada">Escribinos por donde te quede más cómodo. Respondemos rápido en horario de librería.</p>
+
+      <ul class="medios">
+        <li class="medios__item"><a class="medios__enlace" href="https://wa.me/5491155550123">+54 9 11 5555-0123</a> <span class="medios__nota">WhatsApp: reservas y pedidos</span></li>
+        <li class="medios__item"><a class="medios__enlace" href="mailto:hola@lahojasuelta.com.ar">hola@lahojasuelta.com.ar</a> <span class="medios__nota">Mail</span></li>
+        <li class="medios__item"><a class="medios__enlace" href="https://www.instagram.com/lahojasuelta.libros/">@lahojasuelta.libros</a> <span class="medios__nota">Instagram: novedades y festejos</span></li>
+      </ul>
+
+      <form class="formulario formulario--claro" name="newsletter" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="newsletter">
+        <p hidden><label>No completar: <input name="bot-field"></label></p>
+
+        <h3 class="formulario__titulo">Newsletter mensual</h3>
+        <p class="formulario__texto">Una carta al mes con recomendados y la agenda. Cero spam, palabra de librería.</p>
+        <p class="campo">
+          <label class="campo__label" for="news-mail">Tu mail</label>
+          <input class="campo__input" type="email" id="news-mail" name="mail" autocomplete="email" placeholder="tu@mail.com" required>
+        </p>
+        <button class="btn btn--primario btn--ancho" type="submit">Suscribirme</button>
+      </form>
+      </div>
+
+      <!-- Netlify Forms: data-netlify y el input oculto form-name son obligatorios -->
+      <form class="formulario" name="contacto" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contacto">
+        <p hidden><label>No completar: <input name="bot-field"></label></p>
+
+        <h3 class="formulario__titulo">Escribinos</h3>
+        <p class="campo">
+          <label class="campo__label" for="contacto-nombre">Nombre</label>
+          <input class="campo__input" type="text" id="contacto-nombre" name="nombre" autocomplete="name" required>
+        </p>
+        <p class="campo">
+          <label class="campo__label" for="contacto-mail">Mail</label>
+          <input class="campo__input" type="email" id="contacto-mail" name="mail" autocomplete="email" placeholder="tu@mail.com" required>
+        </p>
+        <p class="campo">
+          <label class="campo__label" for="contacto-mensaje">Mensaje</label>
+          <textarea class="campo__input" id="contacto-mensaje" name="mensaje" rows="4" placeholder="¿Tienen algo de Sara Gallardo usado?" required></textarea>
+        </p>
+        <button class="btn btn--primario btn--ancho" type="submit">Enviar mensaje</button>
+      </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <p class="footer__texto">© 2026 Librería La Hoja Suelta · Av. Corrientes 5280, Villa Crespo, Buenos Aires</p>
+    <p class="footer__texto">Hecho con cariño (y mucho café) en Buenos Aires</p>
+  </footer>
+
+  <!-- Botón flotante de WhatsApp: solo en mobile (el CSS lo oculta en pantallas grandes en la fase 4) -->
+  <a class="flotante" href="https://wa.me/5491155550123" aria-label="Escribinos por WhatsApp">WhatsApp</a>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
